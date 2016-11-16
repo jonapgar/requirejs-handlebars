@@ -1,12 +1,9 @@
 define(['text', 'handlebars', 'module'], function(text, handlebarsImport, module) {
 
 	var pluginConfig = module.config(),
-		importDefault = handlebarsImport.hasOwnProperty('default'),
-		handlebars = importDefault ? handlebarsImport['default'] : handlebarsImport,
+		handlebarsImport = handlebarsImport['default'] || handlebarsImport,
 		buildCache = {},
-        buildCompileTemplate = importDefault ?
-			'define("{{pluginName}}!{{moduleName}}", ["handlebars.runtime"], function(hr) {return hr["default"].template({{{fn}}})});' :
-			'define("{{pluginName}}!{{moduleName}}", ["handlebars"], function(handlebars) {return handlebars.template({{{fn}}})});',
+        buildCompileTemplate = 'define("{{pluginName}}!{{moduleName}}", ["handlebars"], function(handlebars) {return handlebars.template({{{fn}}})});',
         buildTemplate;
 
 	var finishLoad = function(moduleName, load, config, data) {
