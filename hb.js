@@ -1,7 +1,7 @@
 define(['text', 'handlebars', 'module'], function(text, handlebarsImport, module) {
 
 	var pluginConfig = module.config(),
-		handlebars = handlebarsImport['default'] || handlebarsImport,
+		handlebars = handlebarsImport ? (handlebarsImport['default'] || handlebarsImport):{},
 		buildCache = {},
         buildCompileTemplate = 'define("{{pluginName}}!{{moduleName}}", ["handlebars"], function(handlebars) {return handlebars.template({{{fn}}})});',
         buildTemplate;
